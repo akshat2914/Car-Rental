@@ -1,0 +1,843 @@
+<?php
+session_start();
+if (!isset($_SESSION['email'])) {
+    header("Location: login.html");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="swiper.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Car Matrix</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="nav__header">
+          <div class="nav__logo">
+            <a href="#" class="logo">
+              <img src="assets\logo.png" alt="logo" class="logo-white" />
+              <img src="assets\logo2.jpg" alt="logo" class="logo-dark" />
+              <span>Car Matrix</span>
+            </a>
+          </div>
+          <div class="nav__menu__btn" id="menu-btn">
+            <i class="ri-menu-line"></i>
+          </div>
+        </div>
+        <ul class="nav__links" id="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#deals">Rental Deals</a></li>
+          <li><a href="#choose">Why Choose Us</a></li>
+          <li><a href="#client">Testimonials</a></li>
+        </ul>
+        <div class="nav__btns">
+          <button class="btn" onclick="window.location.href='dashboard.php';">My Profile</button>
+          </div>
+          <div>
+          <button class="btn" onclick="window.location.href='logout.php';">LogOut</button>
+        </div>
+      </nav>
+      <div class="header__container" id="home">
+        <div class="header__image">
+          <img src="assets/header.png" alt="header" />
+        </div>
+        <div class="header__content">
+          <h2>Trusted Car Rental Platform in India</h2>
+          <h1>FAST AND EASY WAY TO RENT A CAR</h1>
+          <p class="section__description">
+            Discover a seamless car rental experience with us. Choose from a
+            range of premium vehicles to suit your style and needs, and hit the
+            road with confidence. Quick, easy, and reliable - rent your ride
+            today!
+          </p>
+        </div>
+
+        </div>
+    </header>
+
+    <section class="header__form">
+      <form action="/">
+        <div class="input__group">
+          <label for="location">Pick up location</label>
+          <input
+            type="text"
+            name="location"
+            id="location"
+            placeholder="Rajwada, Indore"
+          />
+        </div>
+        <div class="input__group">
+          <label for="start">Pick up date</label>
+          <input
+            type="date"
+            name="start"
+            id="start"
+          />
+        </div>
+        <div class="input__group">
+          <label for="stop">Return date</label>
+          <input
+            type="date"
+            name="stop"
+            id="stop"
+          />
+        </div>
+      </form>
+    </section>
+
+    <section class="section__container about__container" id="about">
+      <h2 class="section__header">How it work</h2>
+      <p class="section__description">
+        Renting a car with us is simple! Choose your vehicle, pick your dates,
+        and complete your booking. We'll handle the rest, ensuring a smooth
+        start to your journey.
+      </p>
+      <div class="about__grid">
+        <div class="about__card">
+          <span><i class="ri-map-pin-2-fill"></i></span>
+          <h4>Choose Location</h4>
+          <p>
+            Select from a variety of pick-up locations that best suit your
+            needs, whether it's close to home, work, or airport.
+          </p>
+        </div>
+        <div class="about__card">
+          <span><i class="ri-calendar-event-fill"></i></span>
+          <h4>Pick-up Date</h4>
+          <p>
+            Choose the exact date and time for your car pick-up, ensuring that
+            your vehicle is ready when you need it.
+          </p>
+        </div>
+        <div class="about__card">
+          <span><i class="ri-roadster-fill"></i></span>
+          <h4>Book your Car</h4>
+          <p>
+            Complete your booking with just a few clicks, and we'll prepare your
+            vehicle to ensure a hassle-free pick-up.
+          </p>
+        </div>
+      </div>
+    </section>
+    
+    <div class="container">
+      <div class="heading">IMPORTANT POINTS TO <span class="highlight">BOOK</span> A CAR</div>
+      <div class="info-container">
+          <div class="info-box">
+              <div class="icon">📄</div>
+              <div class="info-text">
+                  <h4>Document required</h4>
+                  <p>Original Driving License & Aadhar Card</p>
+              </div>
+          </div>
+          <div class="info-box">
+              <div class="icon">❤️</div>
+              <div class="info-text">
+                  <h4>Minimum age</h4>
+                  <p>21 years</p>
+              </div>
+          </div>
+          <div class="info-box">
+              <div class="icon">💰</div>
+              <div class="info-text">
+                  <h4>Security deposit</h4>
+                  <p>₹5000</p>
+              </div>
+          </div>
+          <div class="info-box">
+              <div class="icon">⏳</div>
+              <div class="info-text">
+                  <h4>Minimum Booking hours</h4>
+                  <p>8 Hours</p>
+              </div>
+          </div>
+      </div>
+  </div>
+    <section class="deals" id="deals">
+      <div class="section__container deals__container">
+        <h2 class="section__header">Most popular car rental deals</h2>
+        <p class="section__description">
+          Explore our top car rental deals, handpicked to give you the best
+          value and experience. Book now and drive your favorite ride at an
+          incredible rate!
+        </p>
+        <div class="deals__tabs">
+          <button class="btn active" data-id="Hatch">Hatchback</button>
+          <button class="btn" data-id="Sedan">Sedan</button>
+          <button class="btn" data-id="suv">SUV's</button>
+          <button class="btn" data-id="muv">MUV's</button>
+        </div>
+        <div id="Hatch" class="tab__content active">
+          <div class="deals__card">
+            <img src="assets\deals-1.jpg" alt="deals" />
+            <div class="deals__rating">
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-line"></i></span>
+              <span>(550)</span>
+            </div>
+            <h4>Maruti Suzuki Wagon R</h4>
+            <div class="deals__card__grid">
+              <div>
+                <span><i class="ri-group-line"></i></span> 4 People
+              </div>
+              <div>
+                <span><i class="ri-steering-2-line"></i></span> Manual
+              </div>
+              <div>
+                <span><i class="ri-speed-up-line"></i></span> 21 Km/L
+              </div>
+              <div>
+                <span><i class="ri-car-line"></i></span> Diesel
+              </div>
+            </div>
+            <hr />
+            <div class="deals__card__footer">
+              <h3>₹149/-<span> Per Hr</span></h3>
+              <a href="#">
+                Rent Now
+                <span><i class="ri-arrow-right-line"></i></span>
+              </a>
+            </div>
+          </div>
+          <div class="deals__card">
+            <img src="assets\deals-2.jpg" alt="deals" />
+            <div class="deals__rating">
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-line"></i></span>
+              <span>(450)</span>
+            </div>
+            <h4>Maruti Suzuki Swift</h4>
+            <div class="deals__card__grid">
+              <div>
+                <span><i class="ri-group-line"></i></span> 4 People
+              </div>
+              <div>
+                <span><i class="ri-steering-2-line"></i></span> Manual
+              </div>
+              <div>
+                <span><i class="ri-speed-up-line"></i></span> 22 Km/L
+              </div>
+              <div>
+                <span><i class="ri-car-line"></i></span> Petrol
+              </div>
+            </div>
+            <hr />
+            <div class="deals__card__footer">
+              <h3>₹175/-<span> Per Hr</span></h3>
+              <a href="detail.html">
+                Rent Now
+                <span><i class="ri-arrow-right-line"></i></span>
+              </a>
+            </div>
+          </div>
+          <div class="deals__card">
+            <img src="assets\deals-3.jpeg" alt="deals" />
+            <div class="deals__rating">
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-line"></i></span>
+              <span>(550)</span>
+            </div>
+            <h4>Maruti Suzuki Baleno</h4>
+            <div class="deals__card__grid">
+              <div>
+                <span><i class="ri-group-line"></i></span> 6 People
+              </div>
+              <div>
+                <span><i class="ri-steering-2-line"></i></span> Manual
+              </div>
+              <div>
+                <span><i class="ri-speed-up-line"></i></span> 22 Km/L
+              </div>
+              <div>
+                <span><i class="ri-car-line"></i></span> Petrol
+              </div>
+            </div>
+            <hr />
+            <div class="deals__card__footer">
+              <h3>₹189/-<span> Per Hr</span></h3>
+              <a href="#">
+                Rent Now
+                <span><i class="ri-arrow-right-line"></i></span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div id="Sedan" class="tab__content">
+          <div class="deals__card">
+            <img src="assets\deals-4.jpg" alt="deals" />
+            <div class="deals__rating">
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-line"></i></span>
+              <span>(350)</span>
+            </div>
+            <h4>Hyundai Aura</h4>
+            <div class="deals__card__grid">
+              <div>
+                <span><i class="ri-group-line"></i></span> 4 People
+              </div>
+              <div>
+                <span><i class="ri-steering-2-line"></i></span> Manual
+              </div>
+              <div>
+                <span><i class="ri-speed-up-line"></i></span> 18Km/L
+              </div>
+              <div>
+                <span><i class="ri-car-line"></i></span> Diesel
+              </div>
+            </div>
+            <hr />
+            <div class="deals__card__footer">
+              <h3>₹200/-<span> Per Hr</span></h3>
+              <a href="#">
+                Rent Now
+                <span><i class="ri-arrow-right-line"></i></span>
+              </a>
+            </div>
+          </div>
+          <div class="deals__card">
+            <img src="assets\deals-5.webp" alt="deals" />
+            <div class="deals__rating">
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-line"></i></span>
+              <span>(250)</span>
+            </div>
+            <h4>Honda Amaze</h4>
+            <div class="deals__card__grid">
+              <div>
+                <span><i class="ri-group-line"></i></span> 4 People
+              </div>
+              <div>
+                <span><i class="ri-steering-2-line"></i></span> Manual
+              </div>
+              <div>
+                <span><i class="ri-speed-up-line"></i></span> 18Km/L
+              </div>
+              <div>
+                <span><i class="ri-car-line"></i></span> Diesel
+              </div>
+            </div>
+            <hr />
+            <div class="deals__card__footer">
+              <h3>₹249/-<span> Per Hr</span></h3>
+              <a href="#">
+                Rent Now
+                <span><i class="ri-arrow-right-line"></i></span>
+              </a>
+            </div>
+          </div>
+          <div class="deals__card">
+            <img src="assets\deals-6.jpeg" alt="deals" />
+            <div class="deals__rating">
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-line"></i></span>
+              <span>(150)</span>
+            </div>
+            <h4>Hyundai Verna</h4>
+            <div class="deals__card__grid">
+              <div>
+                <span><i class="ri-group-line"></i></span> 6 People
+              </div>
+              <div>
+                <span><i class="ri-steering-2-line"></i></span> Manual
+              </div>
+              <div>
+                <span><i class="ri-speed-up-line"></i></span> 17Km/L
+              </div>
+              <div>
+                <span><i class="ri-car-line"></i></span> Diesel
+              </div>
+            </div>
+            <hr />
+            <div class="deals__card__footer">
+              <h3>₹359/-<span> Per Hr</span></h3>
+              <a href="#">
+                Rent Now
+                <span><i class="ri-arrow-right-line"></i></span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div id="suv" class="tab__content">
+          <div class="deals__card">
+            <img src="assets\deals-7.webp" alt="deals" />
+            <div class="deals__rating">
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-line"></i></span>
+              <span>(200)</span>
+            </div>
+            <h4>Kia Seltos</h4>
+            <div class="deals__card__grid">
+              <div>
+                <span><i class="ri-group-line"></i></span> 4 People
+              </div>
+              <div>
+                <span><i class="ri-steering-2-line"></i></span> Manual
+              </div>
+              <div>
+                <span><i class="ri-speed-up-line"></i></span> 18Km/L
+              </div>
+              <div>
+                <span><i class="ri-car-line"></i></span> Diesel
+              </div>
+            </div>
+            <hr />
+            <div class="deals__card__footer">
+              <h3>₹389/-<span> Per Hr</span></h3>
+              <a href="#">
+                Rent Now
+                <span><i class="ri-arrow-right-line"></i></span>
+              </a>
+            </div>
+          </div>
+          <div class="deals__card">
+            <img src="assets\deals-8.jpg" alt="deals" />
+            <div class="deals__rating">
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-line"></i></span>
+              <span>(100)</span>
+            </div>
+            <h4>Hyundai Creta</h4>
+            <div class="deals__card__grid">
+              <div>
+                <span><i class="ri-group-line"></i></span> 4 People
+              </div>
+              <div>
+                <span><i class="ri-steering-2-line"></i></span> Manual
+              </div>
+              <div>
+                <span><i class="ri-speed-up-line"></i></span> 18Km/L
+              </div>
+              <div>
+                <span><i class="ri-car-line"></i></span> Diesel
+              </div>
+            </div>
+            <hr />
+            <div class="deals__card__footer">
+              <h3>₹399/-<span> Per Hr</span></h3>
+              <a href="#">
+                Rent Now
+                <span><i class="ri-arrow-right-line"></i></span>
+              </a>
+            </div>
+          </div>
+          <div class="deals__card">
+            <img src="assets\deals-9.jpg" alt="deals" />
+            <div class="deals__rating">
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-line"></i></span>
+              <span>(180)</span>
+            </div>
+            <h4>Mahindra Thar</h4>
+            <div class="deals__card__grid">
+              <div>
+                <span><i class="ri-group-line"></i></span> 4 People
+              </div>
+              <div>
+                <span><i class="ri-steering-2-line"></i></span> Manual
+              </div>
+              <div>
+                <span><i class="ri-speed-up-line"></i></span> 12Km/L
+              </div>
+              <div>
+                <span><i class="ri-car-line"></i></span> Diesel
+              </div>
+            </div>
+            <hr />
+            <div class="deals__card__footer">
+              <h3>₹449/-<span> Per Hr</span></h3>
+              <a href="#">
+                Rent Now
+                <span><i class="ri-arrow-right-line"></i></span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div id="muv" class="tab__content">
+          <div class="deals__card">
+            <img src="assets/deals-10.png" alt="deals" />
+            <div class="deals__rating">
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-line"></i></span>
+              <span>(250)</span>
+            </div>
+            <h4>Corolla</h4>
+            <div class="deals__card__grid">
+              <div>
+                <span><i class="ri-group-line"></i></span> 4 People
+              </div>
+              <div>
+                <span><i class="ri-steering-2-line"></i></span> Manual
+              </div>
+              <div>
+                <span><i class="ri-speed-up-line"></i></span> 18km/l
+              </div>
+              <div>
+                <span><i class="ri-car-line"></i></span> Diesel
+              </div>
+            </div>
+            <hr />
+            <div class="deals__card__footer">
+              <h3>₹465/-<span> Per Hr</span></h3>
+              <a href="#">
+                Rent Now
+                <span><i class="ri-arrow-right-line"></i></span>
+              </a>
+            </div>
+          </div>
+          <div class="deals__card">
+            <img src="assets/deals-11.png" alt="deals" />
+            <div class="deals__rating">
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-line"></i></span>
+              <span>(550)</span>
+            </div>
+            <h4>Innova</h4>
+            <div class="deals__card__grid">
+              <div>
+                <span><i class="ri-group-line"></i></span> 4 People
+              </div>
+              <div>
+                <span><i class="ri-steering-2-line"></i></span> Manual
+              </div>
+              <div>
+                <span><i class="ri-speed-up-line"></i></span> 18km/l
+              </div>
+              <div>
+                <span><i class="ri-car-line"></i></span> Diesel
+              </div>
+            </div>
+            <hr />
+            <div class="deals__card__footer">
+              <h3>₹479/-<span> Per Hr</span></h3>
+              <a href="#">
+                Rent Now
+                <span><i class="ri-arrow-right-line"></i></span>
+              </a>
+            </div>
+          </div>
+          <div class="deals__card">
+            <img src="assets/deals-12.png" alt="deals" />
+            <div class="deals__rating">
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-fill"></i></span>
+              <span><i class="ri-star-line"></i></span>
+              <span>(180)</span>
+            </div>
+            <h4>Fortuner</h4>
+            <div class="deals__card__grid">
+              <div>
+                <span><i class="ri-group-line"></i></span> 4 People
+              </div>
+              <div>
+                <span><i class="ri-steering-2-line"></i></span> Manual
+              </div>
+              <div>
+                <span><i class="ri-speed-up-line"></i></span> 18km/l
+              </div>
+              <div>
+                <span><i class="ri-car-line"></i></span> Diesel
+              </div>
+            </div>
+            <hr />
+            <div class="deals__card__footer">
+              <h3>₹499/-<span> Per Hr</span></h3>
+              <a href="#">
+                Rent Now
+                <span><i class="ri-arrow-right-line"></i></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="choose__container" id="choose">
+      <div class="choose__image">
+        <img src="assets\choose.png" alt="choose" />
+      </div>
+      <div class="choose__content">
+        <h2 class="section__header">Why choose us</h2>
+        <p class="section__description">
+          Discover the difference with our car rental service. We offer reliable
+          vehicles, exceptional customer service, and competitive pricing to
+          ensure a seamless rental experience.
+        </p>
+        <div class="choose__grid">
+          <div class="choose__card">
+            <span><i class="ri-customer-service-line"></i></span>
+            <div>
+              <h4>Customer Support</h4>
+              <p>Our dedicated support team is available to assist you 24/7.</p>
+            </div>
+          </div>
+          <div class="choose__card">
+            <span><i class="ri-map-pin-line"></i></span>
+            <div>
+              <h4>Many Locations</h4>
+              <p>
+                Convenient pick-up and drop-off locations to suit your travel
+                needs.
+              </p>
+            </div>
+          </div>
+          <div class="choose__card">
+            <span><i class="ri-wallet-line"></i></span>
+            <div>
+              <h4>Best Price</h4>
+              <p>Enjoy competitive rates and great value for every rental.</p>
+            </div>
+          </div>
+          <div class="choose__card">
+            <span><i class="ri-user-star-line"></i></span>
+            <div>
+              <h4>Experience Driver</h4>
+              <p>Reliable, professional drivers available upon request.</p>
+            </div>
+          </div>
+          <div class="choose__card">
+            <span><i class="ri-verified-badge-line"></i></span>
+            <div>
+              <h4>Verified Service Providers</h4>
+              <p>Choose from trusted and well-maintained car providers.</p>
+            </div>
+          </div>
+          <div class="choose__card">
+            <span><i class="ri-calendar-close-line"></i></span>
+            <div>
+              <h4>Free Cancellations</h4>
+              <p>Flexible bookings with free cancellation options.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="subscribe__container">
+      <div class="subscribe__image">
+        <img src="assets/subscribe.png" alt="subscribe" />
+      </div>
+      <div class="subscribe__content">
+        <h2 class="section__header">
+          Subscribe for the latest car rental updates
+        </h2>
+        <p class="section__description">
+          Stay in the know! Subscribe to receive the latest car rental deals,
+          exclusive offers, and updates right to your inbox. Don't miss out on
+          special promotions and the newest additions to our fleet.
+        </p>
+        <form action="/">
+          <input type="text" placeholder="Your Email" />
+          <button class="btn">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="section__container client__container" id="client">
+      <h2 class="section__header">What people say about us?</h2>
+      <p class="section__description">
+        Discover why our customers love renting with us! Read real reviews and
+        testimonials to see how we deliver exceptional service.
+      </p>
+      <div class="swiper">
+        <div class="swiper-wrapper">
+         
+          <div class="swiper-slide">
+            <div class="client__card">
+              <div class="client__details">
+                <img src="assets/client-1.jpg" alt="client" />
+                <div>
+                  <h4>Akshat Desai</h4>
+                  <div class="client__rating">
+                    <span><i class="ri-star-fill"></i></span>
+                    <span><i class="ri-star-fill"></i></span>
+                    <span><i class="ri-star-fill"></i></span>
+                    <span><i class="ri-star-fill"></i></span>
+                    <span><i class="ri-star-line"></i></span>
+                  </div>
+                </div>
+              </div>
+              <p>
+                I had an amazing experience renting a car from this service. The
+                booking process was quick and easy, and the car was in perfect
+                condition. Highly recommend!
+              </p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="client__card">
+              <div class="client__details">
+                <img src="assets\client-2.png" alt="client" />
+                <div>
+                  <h4>Abdullah Aziz</h4>
+                  <div class="client__rating">
+                    <span><i class="ri-star-fill"></i></span>
+                    <span><i class="ri-star-fill"></i></span>
+                    <span><i class="ri-star-fill"></i></span>
+                    <span><i class="ri-star-fill"></i></span>
+                    <span><i class="ri-star-line"></i></span>
+                  </div>
+                </div>
+              </div>
+              <p>
+                Customer support was excellent! They helped me with all my
+                questions, and I felt confident about my booking. I will
+                definitely rent from them again.
+              </p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="client__card">
+              <div class="client__details">
+                <img src="assets/client-3.jpg" alt="client" />
+                <div>
+                  <h4>Megha Birthare</h4>
+                  <div class="client__rating">
+                    <span><i class="ri-star-fill"></i></span>
+                    <span><i class="ri-star-fill"></i></span>
+                    <span><i class="ri-star-fill"></i></span>
+                    <span><i class="ri-star-fill"></i></span>
+                    <span><i class="ri-star-line"></i></span>
+                  </div>
+                </div>
+              </div>
+              <p>
+                Affordable prices and great selection of vehicles! I found
+                exactly what I needed, and the pick-up and drop-off process was
+                seamless. Very happy with my rental.
+              </p>
+            </div>
+          </div>
+    </section>
+
+    <footer class="footer">
+      <div class="section__container footer__container">
+        <div class="footer__col">
+          <div class="footer__logo">
+            <a href="#" class="logo">
+              <img src="assets\logo.png" alt="logo" />
+              <span>Car Matrix</span>
+            </a>
+          </div>
+          <p>
+            We're here to provide you with the best vehicles and a seamless
+            rental experience. Stay connected for updates, special offers, and
+            more. Drive with confidence!
+          </p>
+          <ul class="footer__socials">
+            <li>
+              <a href="#"><i class="ri-facebook-fill"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="ri-twitter-fill"></i></a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/akshatdesai10/"><i class="ri-linkedin-fill"></i></a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/akshxttt10/?hl=en"><i class="ri-instagram-line"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="ri-youtube-fill"></i></a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Our Services</h4>
+          <ul class="footer__links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#deals">Rental Deals</a></li>
+            <li><a href="#choose">Why Choose Us</a></li>
+            <li><a href="#client">Testimonials</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Vehicle Model</h4>
+          <ul class="footer__links">
+            <li><a href="https://www.bing.com/search?pglt=2337&q=Mahindra+Thar&cvid=38d8fd22be36407ca0d7bec1d9876686&gs_lcrp=EgRlZGdlKgkIABBFGDsY-QcyCQgAEEUYOxj5BzIGCAEQLhhAMgYIAhBFGDkyBggDEAAYQDIGCAQQABhAMgYIBRAAGEAyBggGEAAYQDIGCAcQABhAMgYICBBFGDzSAQgyNjE0ajBqMagCALACAA&FORM=ANNTA1&PC=ASTS">Mahindra Thar</a></li>
+            <li><a href="https://www.bing.com/search?q=toyota+fortuner&filters=ufn%3a%22Toyota+Fortuner%22+sid%3a%227d948068-b172-4d2f-abf5-778941c22b93%22&asbe=SS&qs=AM&pq=toyota+&sk=LS1&sc=12-7&cvid=9287D6A5FB4244FAA6E92D8A733DE046&FORM=QBRE&sp=2&ghc=1&lq=0">Toyota Fortuner</a></li>
+            <li><a href="https://www.bing.com/search?q=swift+dzire&qs=AS&pq=swift+d&sc=12-7&cvid=A020D618463D4CE99823FF98C1BF24A5&FORM=QBRE&sp=1&ghc=1&lq=0">Swift Dzire</a></li>
+            <li><a href="https://www.bing.com/search?filters=ufn%3a%22Tata+Harrier%22+sid%3a%22d60b374a-a249-ca4e-d92c-6fc92eaff3d7%22&qs=MB&pq=tata+har&sk=CSYN1LS1&sc=16-8&q=tata+harrier&cvid=7df152f308204c7db5483b5f561667bb&gs_lcrp=EgRlZGdlKgYIARAuGEAyBwgAEAAY-QcyBggBEC4YQDIGCAIQRRg5MgYIAxAAGEAyBggEEAAYQDIGCAUQABhAMgYIBhAAGEAyBggHEAAYQDIGCAgQABhA0gEINDY2NGowajmoAgCwAgA&FORM=ANAB01&PC=ASTS">TATA Harrier</a></li>
+            <li><a href="https://www.bing.com/search?q=Kia+Seltos&cvid=cee2087816a34cc3bbc6d2d93a932589&gs_lcrp=EgRlZGdlKgkIABBFGDsY-QcyCQgAEEUYOxj5BzIGCAEQLhhAMgYIAhBFGDkyBggDEC4YQDIGCAQQLhhAMgYIBRAuGEAyBggGEC4YQDIGCAcQRRg8MgYICBBFGDzSAQgxNDE4ajBqOagCALACAA&FORM=ANAB01&PC=ASTS">Kia Seltos</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <ul class="footer__links">
+            <li>
+              <a href="https://wa.me/+919993605093">
+                <span><i class="ri-phone-fill"></i></span> +91 9993605093
+              </a>
+            </li>
+            <li>
+              <a href="https://www.google.co.in/maps/place/Indore,+Madhya+Pradesh/@22.7238883,75.6990376,11z/data=!3m1!4b1!4m6!3m5!1s0x3962fcad1b410ddb:0x96ec4da356240f4!8m2!3d22.7195687!4d75.8577258!16zL20vMDFfeXZ5?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D">
+                <span><i class="ri-map-pin-fill"></i></span> Indore, India
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span><i class="ri-mail-fill"></i></span> info@carmatrix
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bar">
+        Copyright © 2025 Minor Project. All rights reserved.
+      </div>
+    </footer>
+
+    <script src="externaljs.js"></script>
+    <script src="externaljs2.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Details Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Inter', sans-serif; background-color: #8a79f0; color: #333; }
+    header { background-color: #f2f2f3; color:  #8a79f0; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; }
+    header .logo { font-size: 24px; font-weight: bold; }
+    header nav a { color: #8a79f0; margin: 0 15px; text-decoration: none; font-size: 14px; }
+    .container { display: flex; flex-wrap: wrap; max-width: 1200px; margin: 30px auto; gap: 20px; }
+    .left, .right { background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    .left { flex: 2; }
+    .right { flex: 1; }
+
+    .car-header { display: flex; justify-content: space-between; align-items: center; }
+    .car-header h2 { margin: 0; font-size: 24px; }
+    .tag { background: #b5ade0; color: #050505; padding: 5px 10px; border-radius: 12px; font-size: 12px; }
+
+    .car-info { display: flex; gap: 20px; margin: 20px 0; }
+    .car-info img { width: 200px; border-radius: 6px; }
+    .features { font-size: 14px; }
+
+    .price-includes { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 14px; }
+    .rating { color: #2ecc71; font-weight: bold; margin-top: 10px; }
+    .banner { background: #e0f7f1; padding: 10px; margin: 20px 0; border-left: 4px solid #2ecc71; font-size: 14px; }
+
+    .driver-form label { display: block; font-size: 14px; margin: 10px 0 5px; }
+    .driver-form input, .driver-form select { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    .section-title { font-weight: 600; margin-top: 20px; }
+
+    .right-box { margin-bottom: 20px; font-size: 14px; }
+    .right-box h3 { margin-bottom: 10px; }
+    .price-summary { font-size: 16px; }
+    .price-summary div { margin-bottom: 10px; }
+    .total { font-weight: bold; font-size: 18px; }
+    .book-btn { background:  #8a79f0; color: white; border: none; padding: 12px; width: 100%; font-size: 16px; border-radius: 4px; cursor: pointer; margin-top: 10px; }
+    .terms { font-size: 12px; color: #666; margin-top: 10px; }
+    .status { color: red; font-size: 12px; margin-top: 5px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo" href="userindex.php">Car Matrix</div>
+    <nav>
+      <a href="userindex.php">Home</a>
+      <a href="https://wa.me/+919993605093">Call us</a>
+      <a href="https://razorpay.com/support/">Help</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="left">
+      <div class="car-header">
+        <h2>Maruti Suzuki Swift</h2>
+        <span class="tag">Economy</span>
+      </div>
+      <div class="car-info">
+        <img src="assets\deals-2.jpg" alt="Maruti Suzuki Swift">
+        <ul class="features">
+          <li>4 Seats</li>
+          <li>2 Bags</li>
+          <li>Mileage</li>
+          <li>A/C</li>
+          <li>Full to Full</li>
+          <li>Auto Transmission</li>
+        </ul>
+      </div>
+      <ul class="price-includes">
+        <li>✔ Free Cancellation</li>
+        <li>✔ Price Guarantee</li>
+        <li>✔ Theft Protection</li>
+        <li>✔ Instantly Confirmed</li>
+        <li>✔ Third Party Liability</li>
+        <li>✔ Damage Waiver</li>
+      </ul>
+      <div class="rating">4.7 Excellent (188 reviews)</div>
+      <div class="banner">✅ Instant Confirmation: This vehicle is available now. You will get your confirmation immediately.</div>
+
+      <h3 class="section-title">🚗 General Safety Cautions</h3>
+      <h3><pre >
+Always follow speed limits, traffic signals, and road signs.
+
+Wear a Seatbelt
+
+Ensure all passengers are buckled up.
+
+No Drunk or Drugged Driving
+
+Never drive under the influence of alcohol or any substance.
+
+Avoid Phone Use While Driving.</pre>
+    </div>
+
+    <div class="right">
+      <div class="right-box">
+        <h3>Pick-up</h3>
+        <div>May 28, 2025, 10:00AM</div>
+        <div>Rajwada Indore</div>
+      </div>
+      <div class="right-box">
+        <h3>Drop-off</h3>
+        <div>May 30, 2025, 10:00AM</div>
+      </div>
+
+      <div class="right-box">
+        <h3>Price Summary</h3>
+        <div class="price-summary">
+          <div>Car rental fee: ₹8,900/- </div>
+          <div>Taxes & Platform fee: Included</div>
+          <div>Discount (16.00%): -₹1344/-</div>
+          <div class="total">Total Amount: ₹7556/-</div>
+        </div>
+        <button onclick="window.location.href='payment.html';" class="book-btn">Book Now</button>
+        <div class="terms">
+          <input type="checkbox"> I understand & agree with the <a href="#">Terms & Conditions</a>
+        </div>
+        <div class="status">⛔ Last Booked: 6 hours ago</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
